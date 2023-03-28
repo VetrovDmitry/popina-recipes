@@ -1,0 +1,1 @@
+gunicorn -w $WORKERS -b 0.0.0.0:$PORT --reload backend.run:app

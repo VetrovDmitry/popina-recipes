@@ -1,0 +1,43 @@
+version: '3.5'
+
+services:
+  dev_db_local:
+    container_name: dev_db
+    image: postgres:14.3-alpine
+    restart: always
+    ports:
+      - "15432:5432"
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    volumes:
+      - ./backend/dumps/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  pg_admin_local:
+    container_name: pg_admin
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_EMAIL}
+      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_PASSWORD}
+    ports:
+      - "5050:80"
+    volumes:
+      - ./pgadmin:/root/.pgadmin
+
+  dev_backend_local:
+    container_name: dev_backend_local
+    build: ./backend
+    image: popina_dev_backend
+    restart: always
+    environment:
+      - SECRET_KEY=${SECRET_KEY}
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY}
+      - SERIALIZER_SALT=${SERIALIZER_SALT}
+      - APP_MODE=dev
+      - PORT=5000
+      - DEV_DB=postgresql+psycopg2://${POSTGRES_USER}:${POSTGRES_PASSWORD}@dev_db:5432/postgres
+      - WORKERS=4
+    ports:
+      - "5000:5000"

@@ -1,0 +1,10 @@
+backend/env
+.env
+db-data/
+backend/localstart.sh
+backend/localmigrate.sh
+backend/migrations/__pycache__
+backend/auth/__pycache__
+backend/__pycache__
+backend/record.log
+.idea
