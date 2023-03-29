@@ -6,7 +6,7 @@ docker-compose up -d dev_db_local
 ```
 > *database loads on ports - 15432:5432 
 
-Also you can use pgAdmin with dev database(email: admin@mail.com, psw: adminadmin):
+Also you can use pgAdmin with dev database:
 ```bash
 docker-compose up -d pg_admin_local
 ```
