@@ -10,10 +10,16 @@ Also you can use pgAdmin with dev database(email: admin@mail.com, psw: adminadmi
 ```bash
 docker-compose up -d pg_admin_local
 ```
-> *pgAdmin loads on ports - 5050:80
+> *pgAdmin loads on http://localhost:5050
 ### Backend container
 To build backend app image and container use:
 ```bash
 docker-compose up -d dev_backend_local
 ```
-> *development backend container loads on port - 5000
+> *development backend container loads on http://localhost:5000
+### Frontend container
+Use this command to build frontend container
+```bash
+docker-compose up -d dev_frontend_local
+```
+> *development frontend container loads on http://localhost:3000

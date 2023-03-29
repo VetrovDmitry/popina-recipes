@@ -1,7 +1,7 @@
 FROM python:3.10
 
 COPY . /backend
-WORKDIR .
+WORKDIR /.
 
 RUN pip install --no-cache --upgrade pip
 RUN pip install --no-cache -r backend/requirements/production.txt

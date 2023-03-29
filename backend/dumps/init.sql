@@ -332,7 +332,7 @@ COPY public.alembic_version (version_num) FROM stdin;
 --
 
 COPY public.devices (id, admin_id, name, key, status, requests) FROM stdin;
-1	1	test-app	THIS-FIELD-SHOULD-BE-CHANGED	ENABLE	50
+1	1	test-app	THIS-FIELD-SHOULD-BE-CHANGED	ENABLE	492
 \.
 
 
@@ -341,8 +341,10 @@ COPY public.devices (id, admin_id, name, key, status, requests) FROM stdin;
 --
 
 COPY public.recipes (id, user_id, title, description, complexity, cooking_time, instruction, time_created, time_updated) FROM stdin;
-2	1	test 2	test test	MEDIUM	22	set on cooker	2023-03-28 11:57:17.052914+00	\N
-1	1	Test 	test test	HARD	66	set on microwave	2023-03-28 11:56:01.305112+00	2023-03-28 13:30:02.263845+00
+1	1	Burger	Testy burger with cucumber and chicken wings	HARD	66	set on microwave	2023-03-28 11:56:01.305112+00	2023-03-28 13:30:02.263845+00
+2	1	Meet Balls	Meet balls with BBQ 	MEDIUM	22	set on cooker	2023-03-28 11:57:17.052914+00	\N
+3	1	Pasta	Easy pasta with corn	EASY	45	1. Buy corn \r\n2. Buy pasta\r\n3. Mix pasta with corn and cook it together	2023-03-29 15:17:43.894406+00	\N
+4	1	Doshirak	Incredibly delicious noodles	MEDIUM	15	1. Buy doshirak\r\n2. Boil water\r\n3. Pour boiling water into noodles\r\n4. Chill and relax	2023-03-29 15:53:33.757163+00	\N
 \.
 
 
@@ -351,7 +353,8 @@ COPY public.recipes (id, user_id, title, description, complexity, cooking_time, 
 --
 
 COPY public.tokens (id, device_id, user_id, access_token, refresh_token, expires, status) FROM stdin;
-1	1	1	eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY4MDAxMDIyNSwianRpIjoiNmIzNjVlNzMtNGEzZi00YTQ5LThlNmEtZTVlNmQwMzhhZTc2IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InsnaWQnOiAxLCAndXNlcm5hbWUnOiAncG9waW5hMDA3J30iLCJuYmYiOjE2ODAwMTAyMjUsImV4cCI6MTY4MDAxMjAyNX0.6nuxcoligaTFTWXZfUMNoWg1cnAb_TCB53HzilvYbtI	eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY4MDAxMDExMiwianRpIjoiODVkODBjMjMtYThmNC00YzYyLTlhNjgtYWNiNDZmMzE4MjkyIiwidHlwZSI6InJlZnJlc2giLCJzdWIiOiJ7J2lkJzogMSwgJ2V4cGlyZXNfYXQnOiAnMjAyMy0wMy0yOFQxNjoyODozMi4xMDQ0NDgrMDA6MDAnfSIsIm5iZiI6MTY4MDAxMDExMiwiZXhwIjoxNjgwMDIwOTEyfQ.3opBr8zZ_86NoT63UJyUU3GDwnv8zoaxPSduvyMfsbA	2023-03-28 17:00:25.474618+00	ACTIVE
+2	1	2	eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY4MDA5Njc1NSwianRpIjoiYTJhZDMwNWMtODBlMi00MTY0LWE3NjMtYWYzMTAzMDlhZjkyIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InsnaWQnOiAyLCAndXNlcm5hbWUnOiAndGVzdF91c2VyJ30iLCJuYmYiOjE2ODAwOTY3NTUsImV4cCI6MTY4MDA5ODU1NX0.OODm_uAYT3XNMbqUbLruehXqB7xmALZL5k851UbFJE4	eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY4MDA5Njc1NSwianRpIjoiNGE1MDFjODAtYzNjMS00M2ZhLTk3MzctYTMwOTA5Y2QyZTg1IiwidHlwZSI6InJlZnJlc2giLCJzdWIiOiJ7J2lkJzogMiwgJ2V4cGlyZXNfYXQnOiAnMjAyMy0wMy0yOVQxNjozMjozNS4yNTAxMjkrMDA6MDAnfSIsIm5iZiI6MTY4MDA5Njc1NSwiZXhwIjoxNjgwMTA3NTU1fQ.8bLV7_fwrUf2teeo3Ibp7fBDcmRbl4kaQRsZNNmXfSs	2023-03-29 14:02:35.250129+00	ACTIVE
+1	1	1	eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY4MDEwNTAyMiwianRpIjoiOWMxOWRmNjUtYTYyZi00NmRlLTkxMjEtMjlhMDdiYmEzMDU3IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InsnaWQnOiAxLCAndXNlcm5hbWUnOiAncG9waW5hMDA3J30iLCJuYmYiOjE2ODAxMDUwMjIsImV4cCI6MTY4MDEwNjgyMn0.xouUwtdjpiz3bInMEMZmMfAJ92L1MJoHkX2yS2c6t9c	eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY4MDEwNTAyMiwianRpIjoiYjNmMmMwZTAtMWU5MS00ZDUyLWI3NDMtZjY5MTM3OTY5NmI4IiwidHlwZSI6InJlZnJlc2giLCJzdWIiOiJ7J2lkJzogMSwgJ2V4cGlyZXNfYXQnOiAnMjAyMy0wMy0yOVQxODo1MDoyMi43MzA3MTMrMDA6MDAnfSIsIm5iZiI6MTY4MDEwNTAyMiwiZXhwIjoxNjgwMTE1ODIyfQ.2ai4T6RGkkJSEHI6MrkGWfvnuUi7JJsoWTg8PGHoD0E	2023-03-29 16:20:22.730713+00	ACTIVE
 \.
 
 
@@ -360,7 +363,8 @@ COPY public.tokens (id, device_id, user_id, access_token, refresh_token, expires
 --
 
 COPY public.users (id, first_name, last_name, username, sex, birth_date, email, hash, status, time_created, time_updated) FROM stdin;
-1	Nastya	Popina	popina007	FEMALE	1970-01-01	popina@gmail.com	$2b$12$sjxvXLtrWSgfWsASUtGn0.k.1xj.TEGrohl/1GGIfDzMJ0zt0xY7S	CONFIRMED	2023-03-28 10:54:27.421824+00	2023-03-28 11:05:29.397452+00
+1	One	Admin	admin	FEMALE	1970-01-01	admin@mail.com	$2b$12$sjxvXLtrWSgfWsASUtGn0.k.1xj.TEGrohl/1GGIfDzMJ0zt0xY7S	CONFIRMED	2023-03-28 10:54:27.421824+00	2023-03-28 11:05:29.397452+00
+2	Anastasia	Popina	popina	FEMALE	2023-03-04	nastya@popina.com	$2b$12$j1csUF68cybk/e/Nh/UtqezRJkLHmql/BAxgSoZh9EPHiI.69HNjC	CONFIRMED	2023-03-29 00:07:30.681903+00	\N
 \.
 
 
@@ -375,21 +379,21 @@ SELECT pg_catalog.setval('public.devices_id_seq', 1, true);
 -- Name: recipes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: admin
 --
 
-SELECT pg_catalog.setval('public.recipes_id_seq', 2, true);
+SELECT pg_catalog.setval('public.recipes_id_seq', 4, true);
 
 
 --
 -- Name: tokens_id_seq; Type: SEQUENCE SET; Schema: public; Owner: admin
 --
 
-SELECT pg_catalog.setval('public.tokens_id_seq', 1, true);
+SELECT pg_catalog.setval('public.tokens_id_seq', 2, true);
 
 
 --
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: admin
 --
 
-SELECT pg_catalog.setval('public.users_id_seq', 1, true);
+SELECT pg_catalog.setval('public.users_id_seq', 2, true);
 
 
 --

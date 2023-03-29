@@ -1,0 +1,6 @@
+env
+__pycache__
+dumps/
+record.log
+localstart.sh
+localmigrate.sh

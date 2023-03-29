@@ -41,3 +41,14 @@ services:
       - WORKERS=4
     ports:
       - "5000:5000"
+
+  dev_frontend_local:
+    container_name: dev_frontend_local
+    build: ./frontend
+    image: popina_dev_frontend
+    restart: always
+    environment:
+      - REACT_APP_API_URL=${REACT_APP_API_URL}
+      - REACT_APP_API_KEY=${REACT_APP_API_KEY}
+    ports:
+      - "3000:3000"

@@ -1,6 +1,7 @@
 backend/env
 .env
 db-data/
+pgadmin
 backend/localstart.sh
 backend/localmigrate.sh
 backend/migrations/__pycache__
