@@ -371,7 +371,7 @@ class DeviceController(AdminController):
 class TokenController(UserController):
     __model = models.Token
     tz = timezone(timedelta(0))
-    access_delta = timedelta(minutes=30)
+    access_delta = timedelta(minutes=5)
     refresh_delta = timedelta(hours=3)
 
     #  Gets

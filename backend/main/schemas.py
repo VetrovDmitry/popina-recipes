@@ -17,7 +17,7 @@ class DetailRecipeSchema(Schema):
     description = fields.Str(validate=[validate.Regexp(r"^[a-zA-Z- ]+$")])
     complexity = fields.Str(validate=validate.OneOf(RecipeComplexity.values()))
     cooking_time = fields.Int()
-    instruction = fields.Str()
+    instruction = fields.Str(validate=[validate.Regexp(r"^[a-zA-Z0-9- ]+$")])
 
     @post_load
     def prepare_data(self, in_data, **kwargs):

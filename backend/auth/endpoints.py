@@ -426,13 +426,13 @@ class TokenApi(MethodResource):
 
         user = self.__controller.get_user_by_username(user_data['username'])
         if not user and not user.admin:
-            raise UserError(f"user: {user_data['username']} not found", 404)
+            raise TokenError(f"user: {user_data['username']} not found", 404)
 
         if not user.verify_password(user_data['password']):
-            raise UserError(f"wrong password", 401)
+            raise TokenError(f"wrong password", 401)
 
         if user.status.value != 'confirmed':
-            raise UserError(f"user: {user.username} is not confirmed", 403)
+            raise TokenError(f"user: {user.username} is not confirmed", 403)
 
         result, cookie = self.__controller.create_token(user, user_data['current_device_id'])
         response = self.__schemas['response']().load(result)
@@ -476,11 +476,11 @@ class RefreshTokenApi(MethodResource):
 
         refresh_token = request.cookies.get('refresh_token')
         if not refresh_token:
-            raise UserError('there is no refresh token in cookies', 400)
+            raise TokenError('there is no refresh token in cookies', 400)
 
         token_checking = self.__controller.check_refresh_token(current_user.id, refresh_token)
         if not token_checking['status']:
-            raise UserError(token_checking['output'], 401)
+            raise TokenError(token_checking['output'], 401)
 
         result = self.__controller.refresh_access(refresh_token)
         response = self.__schemas['response']().load(result)
@@ -584,7 +584,6 @@ class UsersApi(MethodResource):
     __controller = controllers.UserController()
     __schemas = {
         'response': schemas.UsersSchema,
-        'request': schemas.NewUsersSchema,
         'output': schemas.OutputSchema
     }
     decorators = [
@@ -607,20 +606,3 @@ class UsersApi(MethodResource):
         current_app.logger.info(f"sends to {current_user} all users public info")
 
         return response, 200
-
-    @doc(tags=[ADMIN],
-         summary='uploads list of User entities',
-         description='Receives minimal personal Users info',
-         security=[device_header, user_header])
-    @use_kwargs(__schemas['request'])
-    @marshal_with(__schemas['output'], code=201)
-    @admin_required
-    def post(self, **users_data):
-
-        current_user = users_data['current_user']
-        result = self.__controller.create_users(users_data)
-        output = self.__schemas['output']().load(data=result)
-
-        current_app.logger.info(f"{current_user} uploads batch of users")
-
-        return output, 201

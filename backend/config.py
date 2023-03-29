@@ -8,12 +8,12 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SECRET_KEY = getenv('SECRET_KEY')
     JWT_SECRET_KEY = getenv('JWT_SECRET_KEY')
-    MAIL_SERVER = getenv('MAIL_SERVER')
-    MAIL_PORT = getenv('MAIL_PORT')
-    MAIL_USERNAME = getenv('MAIL_USERNAME')
-    MAIL_PASSWORD = getenv('MAIL_PASSWORD')
-    MAIL_DEFAULT_SENDER = getenv('MAIL_DEFAULT_SENDER')
-    MAIL_USE_SSL = True
+    # MAIL_SERVER = getenv('MAIL_SERVER')
+    # MAIL_PORT = getenv('MAIL_PORT')
+    # MAIL_USERNAME = getenv('MAIL_USERNAME')
+    # MAIL_PASSWORD = getenv('MAIL_PASSWORD')
+    # MAIL_DEFAULT_SENDER = getenv('MAIL_DEFAULT_SENDER')
+    # MAIL_USE_SSL = True
 
 
 class ProductionConfig(Config):

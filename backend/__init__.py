@@ -22,7 +22,7 @@ def add_security(app):
 
     JWTManager(app)
     Bcrypt(app)
-    CORS(app)
+    CORS(app, supports_credentials=True)
 
     return app
 

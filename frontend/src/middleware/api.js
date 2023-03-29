@@ -12,18 +12,17 @@ const api = axios.create({
     headers: HEADERS,
 })
 
-async function postUser(firstName, lastName, username, passcode, sex, birthDate, email, password) {
+async function postUser(firstName, lastName, username, sex, birthDate, email, password) {
     const formData = {
         first_name: firstName,
         last_name: lastName,
         username: username,
-        passcode: passcode,
         sex: sex,
         birth_date: birthDate,
         email: email,
         password: password
     }
-    const response =  await api.post('/signup', formData)
+    const response =  await api.post('/user', formData)
     const data =  await response.data
     const code = response.status
     return {data, code}
@@ -32,6 +31,7 @@ async function postUser(firstName, lastName, username, passcode, sex, birthDate,
 export {postUser}
 
 async function putUser(userId, username, email, password) {
+    api.defaults.headers.common['X-AUTH-Key'] = localStorage.getItem('accessToken')
     const formData = {
         user_id: userId,
         username: username,
@@ -45,19 +45,25 @@ async function putUser(userId, username, email, password) {
 
 export {putUser}
 
-async function getUser(userId, username, email, password) {
-    const formData = {
-        user_id: userId,
-        username: username,
-        email: email,
-        password: password 
-    }
-    const response = await api.get('/user', formData)
+async function getUser(userId) {
+    api.defaults.headers.common['X-AUTH-Key'] = localStorage.getItem('accessToken')
+    const response = await api.get(`/user/${userId}`)
+    const data =  await response.data
     const code = response.status
-    return code
+    return {data, code}
 }
 
 export {getUser}
+
+async function getUsers() {
+    api.defaults.headers.common['X-AUTH-Key'] = localStorage.getItem('accessToken')
+    const response = await api.get(`/users`)
+    const data =  await response.data
+    const code = response.status
+    return {data, code}
+}
+
+export {getUsers}
 
 async function token(username, password) {
     const formData = {
@@ -83,3 +89,30 @@ async function refreshToken() {
 }
 
 export {refreshToken}
+
+async function getRecipes() {
+    api.defaults.headers.common['X-AUTH-Key'] = localStorage.getItem('accessToken')
+    const response = await api.get(`/recipes`)
+    const data =  await response.data
+    const code = response.status
+    return {data, code}
+}
+
+export {getRecipes}
+
+async function postRecipe(title, description, complexity, cookingTime, instruction) {
+    api.defaults.headers.common['X-AUTH-Key'] = localStorage.getItem('accessToken')
+    const formData = {
+        title: title,
+        description: description,
+        complexity: complexity,
+        cooking_time: cookingTime,
+        instruction: instruction
+    }
+    const response = await api.post('/recipe', formData)
+    const data = await response.data
+    const code = response.status
+    return {data, code}
+}
+
+export {postRecipe}
