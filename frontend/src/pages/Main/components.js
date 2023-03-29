@@ -108,10 +108,10 @@ const recipeSchema = Yup.object().shape({
         .required('field is required')
         .min(1)
         .max(80)
-        .matches(/^[a-z0-9_,. ]+$/i, "Only alphabets and numbers are allowed for this field"),
+        .matches(/^[a-z0-9_,.\s]+$/i, "Only alphabets and numbers are allowed for this field"),
     description: Yup.string()
         .required('field is required')
-        .matches(/^[a-z0-9_,. ]+$/i, "Only alphabets and numbers are allowed for this field"),
+        .matches(/^[a-z0-9_,.\s]+$/i, "Only alphabets and numbers are allowed for this field"),
     complexity: Yup.string()
         .required('field is required')
         .oneOf(['easy', 'medium', 'hard']),
