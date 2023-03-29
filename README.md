@@ -16,7 +16,7 @@ To build backend app image and container use:
 ```bash
 docker compose up -d dev_backend_local
 ```
-> *development backend container loads on http://localhost:5000
+> *development backend container loads on http://localhost:5000/api-ui
 ### Frontend container
 Use this command to build frontend container
 ```bash
